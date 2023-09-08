@@ -99,23 +99,24 @@ button:active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 380px;
+  width: 280px;
 }
 
-.ghibliText {
-  font-family: "Avant Garde", sans-serif;
-  font-size: 3.2em;
-  line-height: .8;
-  transform: scaleY(0.8);
+.ghibliJapanese {
+  font-size: 1.8em;
+  transform: scaleX(0.96);
+  line-height: 1.1;
   color: #333333;
   margin-top: 20px;
 }
 
-.ghibliJapanese {
-  font-size: 1.4em;
-  line-height: 1.1;
+.ghibliText {
+  font-family: "Avant Garde", sans-serif;
+  font-size: 2.2em;
+  line-height: .8;
+  transform: scaleY(0.8) scaleX(0.96);
   color: #333333;
-  padding-top: 5px;
+  padding-top: 7px;
   border-top: 1px solid #333333;
   margin-bottom: 10px;
 }

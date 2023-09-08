@@ -55,8 +55,8 @@ function App() {
       <header>
         <div className='ghibliContainer'>
           <div className='ghibliBox'>
-            <h1 className='ghibliText'>Studio Ghibli</h1>
-            <p className='ghibliJapanese'>株式会社スタジオジブリ</p>
+            <p className='ghibliJapanese'>スタジオジブリ作品</p>
+            <p className='ghibliText'>STUDIO GHIBLI</p>
           </div>
         </div>
         <img className='ghibliCat' src={ghibliCatImg} alt='ghibli-cat'></img>
