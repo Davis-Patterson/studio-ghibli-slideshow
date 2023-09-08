@@ -4,6 +4,7 @@ import FilmCard from './FilmCard';
 import filmData from './film-data.json';
 import ghibliCatImg from './assets/ghibli-cat.png';
 import ghibliKaonashiImg from './assets/ghibli-kaonashi.png';
+import ghibliSootImg from './assets/ghibli-soot.png';
 
 function App() {
   const [films, setFilms] = useState(filmData);
@@ -14,18 +15,22 @@ function App() {
   const [timer, setTimer] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // const sortByReleaseDate = (filmData) => {
-  //   // need to use the .sort js function to sort by release_date
-  //   // => assign to variable, sorted_data = result
-  //   // update state to use new sorted list instead of filmData
-
-  //   sortedFilms.sort((a, b) => {
-  //     const releaseDateA = parseInt(a.release_date);
-  //     const releaseDateB = parseInt(b.release_date);
-  //     return releaseDateA - releaseDateB;
-  //   });
-  //   setFilms(sortedFilms);
-  // };
+  const handleChange = (inputType, e) => {
+    const selectedValue = e.target.value;
+    if (selectedValue === 'title-asc') {
+      sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
+      setFilms(sortedFilms);
+    } else if (selectedValue === 'title-desc') {
+      sortedFilms.sort((a, b) => b.title.localeCompare(a.title));
+      setFilms(sortedFilms);
+    } else if (selectedValue === 'date-asc') {
+      sortedFilms.sort((a, b) => a.release_date - b.release_date);
+      setFilms(sortedFilms);
+    } else if (selectedValue === 'date-desc') {
+      sortedFilms.sort((a, b) => b.release_date - a.release_date);
+      setFilms(sortedFilms);
+    }
+  };
 
   const autoProgNextFilm = () => {
     if (!isPaused) {
@@ -78,11 +83,27 @@ function App() {
             <p className='ghibliText'>STUDIO GHIBLI</p>
           </div>
         </div>
+        <img className='ghibliSoot' src={ghibliSootImg} alt='ghibli-soot'></img>
+        <img
+          className='ghibliSoot2'
+          src={ghibliSootImg}
+          alt='ghibli-soot-2'
+        ></img>
         <img className='ghibliCat' src={ghibliCatImg} alt='ghibli-cat'></img>
         <img
           className='ghibliKaonashi'
           src={ghibliKaonashiImg}
           alt='ghibli-kaonashi'
+        ></img>
+        <img
+          className='ghibliSoot3'
+          src={ghibliSootImg}
+          alt='ghibli-soot-3'
+        ></img>
+        <img
+          className='ghibliSoot4'
+          src={ghibliSootImg}
+          alt='ghibli-soot-4'
         ></img>
       </header>
       {films.map(
@@ -94,11 +115,15 @@ function App() {
           )
       )}
       <div className='buttonBox'>
-        <button
-          className='sortButton'
-          onClick={() => setFilms(sortByReleaseDate)}
-        >
-          sort
+        <select onChange={(e) => handleChange('color', e)} required>
+          <option>= Sort</option>
+          <option value='title-asc'>Title ▲</option>
+          <option value='title-desc'>Title ▼</option>
+          <option value='date-asc'>Date ▲</option>
+          <option value='date-desc'>Date ▼</option>
+        </select>
+        <button className='pauseButton' onClick={pauseToggle}>
+          {isPaused ? '⏵︎ Play' : '⏸︎ Pause'}
         </button>
         <button
           className='refreshButton'
@@ -106,9 +131,6 @@ function App() {
           disabled={activeFilmIndex === initialIndexValue}
         >
           ⟳ Refresh
-        </button>
-        <button className='pauseButton' onClick={pauseToggle}>
-          {isPaused ? '⏵︎ Play' : '⏸︎ Pause'}
         </button>
         <button
           className='backButton'

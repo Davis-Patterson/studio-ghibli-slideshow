@@ -1,3 +1,46 @@
+.ghibliSoot, .ghibliSoot2, .ghibliSoot3, .ghibliSoot4 {
+  width: 32px;
+  position: absolute;
+  top: 127px;
+  transition: transform 0.3s ease-in-out infinite;
+}
+
+.ghibliSoot:hover {
+  animation: sootHoverEffect 0.5s ease-in-out;
+  content: url('assets/ghibli-soot4.png')
+}
+
+.ghibliSoot {
+  right: 72%;
+}
+
+.ghibliSoot2 {
+  right: 76%;
+}
+
+.ghibliSoot2:hover {
+  animation: sootHoverEffect 0.5s ease-in-out;
+  content: url('assets/ghibli-soot4.png')
+}
+
+.ghibliSoot3 {
+  right: 24%;
+}
+
+.ghibliSoot3:hover {
+  animation: sootHoverEffect 0.5s ease-in-out;
+  content: url('assets/ghibli-soot4.png')
+}
+
+.ghibliSoot4 {
+  right: 20%;
+}
+
+.ghibliSoot4:hover {
+  animation: sootHoverEffect 0.5s ease-in-out;
+  content: url('assets/ghibli-soot4.png')
+}
+
 .ghibliCat {
   width: 55px;
   position: absolute;
@@ -71,5 +114,29 @@
   }
   100% {
     content: url('assets/ghibli-cat4.png');
+  }
+}
+
+@keyframes sootHoverEffect {
+  0% {
+    content: url('assets/ghibli-soot.png');
+  }
+  10% {
+    content: url('assets/ghibli-soot1.png');
+  }
+  30% {
+    content: url('assets/ghibli-soot1.png');
+  }
+  40% {
+    content: url('assets/ghibli-soot2.png');
+  }
+  50% {
+    content: url('assets/ghibli-soot3.png');
+  }
+  60% {
+    content: url('assets/ghibli-soot4.png');
+  }
+  100% {
+    content: url('assets/ghibli-soot4.png');
   }
 }
