@@ -3,7 +3,7 @@ const FilmCard = ({ film }) => {
     <div className="container">
         <div className="slideContainer">
           <h2 className="filmTitle">{film.title}</h2>
-          <div className="infoBox">
+          <div className="infoBox"> {/* border box */}
             <div className="imgBox">
               <img src={film.image} alt={film.title} className="filmImg"></img>
             </div>

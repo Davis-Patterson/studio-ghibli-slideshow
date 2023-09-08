@@ -26,6 +26,7 @@ header {
   border-bottom: 1px solid #f6f6f6;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin-bottom: 20px;
   border-bottom: 4px solid #777777;
 }
@@ -66,8 +67,15 @@ button:active {
 
 .ghibliContainer {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ghibliBox {
+  display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 380px;
 }
 
 .ghibliText {
@@ -83,9 +91,51 @@ button:active {
   font-size: 1.4em;
   line-height: 1.1;
   color: #333333;
-  padding-top: 10px;
+  padding-top: 5px;
   border-top: 1px solid #333333;
   margin-bottom: 10px;
+}
+
+.ghibliCat {
+  width: 60px;
+  position: absolute;
+  right: 650px;
+  top: 107px;
+  transition: transform 0.3s ease-in-out infinite;
+}
+
+.ghibliCat:hover {
+  animation: hoverEffect 0.5s ease-in-out;
+}
+
+.ghibliKaonashi {
+  width: 55px;
+  position: absolute;
+  right: 270px;
+  top: 107px;
+  transition: transform 0.3s ease-in-out infinite;
+}
+
+.ghibliKaonashi:hover {
+  animation: hoverEffect 0.5s ease-in-out;
+}
+
+@keyframes hoverEffect {
+  0% {
+    transform: translateY(0);
+  }
+  15% {
+    transform: translateY(-10px) scale(125%);
+  }
+  20% {
+    display: none;
+  }
+  40% {
+    transform: translateY(60px);
+  }
+  100% {
+
+  }
 }
 
 .container {

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import './App.css';
 import FilmCard from './FilmCard';
 import filmData from './film-data.json';
-
+import ghibliCatImg from './assets/ghibli-cat.png'
+import ghibliKaonashiImg from './assets/ghibli-kaonashi.png'
 
 function App() {
   const [films, setFilms] = useState(filmData);
@@ -21,9 +22,13 @@ function App() {
       <>
         <header>
           <div className="ghibliContainer">
-            <h1 className="ghibliText">Studio Ghibli</h1>
-            <p className="ghibliJapanese">株式会社スタジオジブリ</p>
+            <div className="ghibliBox">
+              <h1 className="ghibliText">Studio Ghibli</h1>
+              <p className="ghibliJapanese">株式会社スタジオジブリ</p>
+            </div>
           </div>
+          <img className="ghibliCat" src={ghibliCatImg} alt="ghibli-cat"></img>
+          <img className="ghibliKaonashi" src={ghibliKaonashiImg} alt="ghibli-kaonashi"></img>
         </header>
         {films.map((film, index) => (
           activeFilmIndex === index &&
