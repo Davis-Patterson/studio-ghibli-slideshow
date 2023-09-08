@@ -1,0 +1,75 @@
+.ghibliCat {
+  width: 55px;
+  position: absolute;
+  right: 66%;
+  top: 107px;
+  transition: transform 0.3s ease-in-out infinite;
+}
+
+.ghibliCat:hover {
+  animation: catHoverEffect 0.5s ease-in-out;
+  content: url('assets/ghibli-cat4.png')
+
+}
+
+.ghibliKaonashi {
+  width: 55px;
+  position: absolute;
+  right: 28%;
+  top: 107px;
+  transition: transform 0.3s ease-in-out infinite;
+  /* background-image: url('ghibli-kaonashi.png'); */
+}
+
+.ghibliKaonashi:hover {
+  animation: kaonashiHoverEffect 0.5s ease-in-out;
+  content: url('assets/ghibli-kaonashi4.png')
+}
+
+@keyframes kaonashiHoverEffect {
+  0% {
+    content: url('assets/ghibli-kaonashi.png');
+  }
+  10% {
+    content: url('assets/ghibli-kaonashi1.png');
+  }
+  30% {
+    content: url('assets/ghibli-kaonashi1.png');
+  }
+  40% {
+    content: url('assets/ghibli-kaonashi2.png');
+  }
+  50% {
+    content: url('assets/ghibli-kaonashi3.png');
+  }
+  60% {
+    content: url('assets/ghibli-kaonashi4.png');
+  }
+  100% {
+    content: url('assets/ghibli-kaonashi4.png');
+  }
+}
+
+@keyframes catHoverEffect {
+  0% {
+    content: url('assets/ghibli-cat.png');
+  }
+  10% {
+    content: url('assets/ghibli-cat1.png');
+  }
+  30% {
+    content: url('assets/ghibli-cat1.png');
+  }
+  40% {
+    content: url('assets/ghibli-cat2.png');
+  }
+  50% {
+    content: url('assets/ghibli-cat3.png');
+  }
+  60% {
+    content: url('assets/ghibli-cat4.png');
+  }
+  100% {
+    content: url('assets/ghibli-cat4.png');
+  }
+}
