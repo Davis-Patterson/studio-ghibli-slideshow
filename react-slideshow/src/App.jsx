@@ -17,7 +17,9 @@ function App() {
 
   const handleChange = (inputType, e) => {
     const selectedValue = e.target.value;
-    if (selectedValue === 'title-asc') {
+    if (selectedValue === 'default') {
+      setFilms(filmData);
+    } else if (selectedValue === 'title-asc') {
       sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
       setFilms(sortedFilms);
     } else if (selectedValue === 'title-desc') {
@@ -116,7 +118,7 @@ function App() {
       )}
       <div className='buttonBox'>
         <select onChange={(e) => handleChange('color', e)} required>
-          <option>= Sort</option>
+          <option value='default'>= Sort</option>
           <option value='title-asc'>Title ▲</option>
           <option value='title-desc'>Title ▼</option>
           <option value='date-asc'>Date ▲</option>
