@@ -12,6 +12,7 @@ function App() {
   const lastFilmIndex = filmData.length - 1;
   const sortedFilms = [...filmData];
   const [timer, setTimer] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   // const sortByReleaseDate = (filmData) => {
   //   // need to use the .sort js function to sort by release_date
@@ -27,12 +28,14 @@ function App() {
   // };
 
   const autoProgNextFilm = () => {
-    if (activeFilmIndex < lastFilmIndex) {
-      setActiveFilmIndex((index) => index + 1);
-    } else {
-      setActiveFilmIndex(initialIndexValue);
+    if (!isPaused) {
+      if (activeFilmIndex < lastFilmIndex) {
+        setActiveFilmIndex((index) => index + 1);
+      } else {
+        setActiveFilmIndex(initialIndexValue);
+      }
     }
-  }; // Make sure this function is properly closed with a curly brace
+  };
 
   useEffect(() => {
     if (timer) {
@@ -48,7 +51,23 @@ function App() {
     return () => {
       clearTimeout(newTimer);
     };
-  }, [activeFilmIndex]);
+  }, [activeFilmIndex, isPaused]);
+
+  const pauseToggle = () => {
+    setIsPaused(!isPaused);
+
+    if (!isPaused) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      const newTimer = setTimeout(() => {
+        autoProgNextFilm();
+      }, 4000);
+
+      setTimer(newTimer);
+    }
+  };
 
   return (
     <>
@@ -87,6 +106,9 @@ function App() {
           disabled={activeFilmIndex === initialIndexValue}
         >
           ⟳ Refresh
+        </button>
+        <button className='pauseButton' onClick={pauseToggle}>
+          {isPaused ? '⏵︎ Play' : '⏸︎ Pause'}
         </button>
         <button
           className='backButton'
