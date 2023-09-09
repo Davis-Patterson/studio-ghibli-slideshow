@@ -46,11 +46,13 @@ const FilmCard = ({ film, toggleFavorite, favorites }) => {
               <p className='filmDate'>
                 <strong>Released:</strong> {film.release_date}
               </p>
-              <div className='extraInfoContainer'>
-                <div className='extraInfoBox2'>
+              <div className='directorContainer'>
+                <div className='directorBox'>
                   <p className='filmDirector'>
                     <strong>Director:</strong> {film.director}
                   </p>
+                </div>
+                <div className='producerBox'>
                   <p className='filmProducer'>
                     <strong>Producer:</strong> {film.producer}
                   </p>

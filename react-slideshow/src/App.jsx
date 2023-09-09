@@ -50,6 +50,10 @@ function App() {
       sortedFilms.sort((a, b) => a.director.localeCompare(b.director));
       setFilms(sortedFilms);
       setActiveFilmIndex(0);
+    } else if (selectedValue === 'producer-asc') {
+      sortedFilms.sort((a, b) => a.producer.localeCompare(b.producer));
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
     } else if (selectedValue === 'title-desc') {
       sortedFilms.sort((a, b) => b.title.localeCompare(a.title));
       setFilms(sortedFilms);
@@ -189,6 +193,7 @@ function App() {
           <option value='title-asc'>Title ▲</option>
           <option value='title-desc'>Title ▼</option>
           <option value='director-asc'>Director</option>
+          <option value='producer-asc'>Producer</option>
           <option value='date-asc'>Date ▲</option>
           <option value='date-desc'>Date ▼</option>
           <option value='time-asc'>Time ▲</option>
