@@ -24,7 +24,7 @@ const FilmCard = ({ film }) => {
             <p className='filmTime'>Duration: {film.running_time} minutes</p>
             <p className='rtScore'>🍅 {film.rt_score}</p>
             <a className='filmUrl' href={film.url} alt={film.title}>
-              Click to see more
+              Click to see film page
             </a>
           </div>
         </div>

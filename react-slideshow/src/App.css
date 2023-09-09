@@ -56,7 +56,7 @@ header {
   width: 100%;
 }
 
-button, select {
+button, select, input {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -68,11 +68,16 @@ button, select {
   transition: border-color 0.25s;
   margin: 5px;
 }
-button:hover, select:hover {
+
+input {
+  width: 75px;
+}
+
+button:hover, select:hover, input:hover {
   border-color: #d2d2d2;
   background-color: #363636;
 }
-button:active, select:active {
+button:active, select:active, input:active {
   border-color: #7276ec;
   background-color: #a7a7a7;
 }
@@ -174,7 +179,7 @@ button:active, select:active {
   border-radius: 30px;
   object-fit: cover; 
   z-index: -1;
-  opacity: 60%;
+  opacity: 50%;
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
 }
 
