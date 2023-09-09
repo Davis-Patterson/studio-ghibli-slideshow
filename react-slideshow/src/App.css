@@ -53,6 +53,7 @@ header {
   flex-direction: column;
   margin-bottom: 20px;
   border-bottom: 4px solid #777777;
+  width: 100%;
 }
 
 button, select {
@@ -148,6 +149,33 @@ button:active, select:active {
   width: 90%;
   display: flex;
   border-radius: 30px;
+  position: relative;
+}
+
+.filmBanner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  object-fit: cover; 
+  z-index: -1;
+  opacity: 35%;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.bannerVignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  object-fit: cover; 
+  z-index: -1;
+  opacity: 60%;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
 }
 
 .imgBox {
@@ -161,6 +189,7 @@ button:active, select:active {
 .filmImg {
   width: 100%;
   border-radius: 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 .detailBox {
@@ -174,25 +203,78 @@ button:active, select:active {
 
 .filmJapanese {
   font-size: 1.8em;
-  font-weight: bold;
+  font-weight: bolder;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  color: white;
+}
+
+.titleRomanised {
+  font-size: .9em;
+  font-family: "Didot" serif;
+  font-style: italic;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  color: white;
+  margin-bottom: 10px;
 }
 
 .filmDate {
   font-size: 1.4em;
   font-family: "Georgia" serif;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.filmDirector {
+  font-size: 1.4em;
+  font-family: "Georgia" serif;
   font-style: italic;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  color: white;
 }
 
 .filmDesc {
-  font-size: 1.1em;
+  font-size: .9em;
   font-family: "Avant Garde" sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   line-height: 1;
   width: 100%;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.rtScore {
+  font-size: 1.1em;
+  font-family: "Avant Garde" sans-serif;
+  margin-bottom: 10px;
+  line-height: 1;
+  width: 100%;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.filmUrl {
+  font-size: .8em;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
+  width: 100%;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.filmTime {
+  font-size: .9em;
+  font-family: "Avant Garde" sans-serif;
+  margin-bottom: 10px;
+  line-height: 1;
+  width: 100%;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  color: white;
 }
 
 .buttonBox {
   margin-top: 10px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
-
