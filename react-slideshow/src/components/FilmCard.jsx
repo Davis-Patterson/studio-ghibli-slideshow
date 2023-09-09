@@ -25,12 +25,13 @@ const FilmCard = ({ film, toggleFavorite, favorites }) => {
         <div className='slideContainer'>
           <h2 className='filmTitle'>{film.title}</h2>
           <div className='infoBox'>
-            <img
-              src={film.movie_banner}
-              alt={film.title}
-              className='filmBanner'
-            ></img>
-            <img className='bannerVignette' src={vignette}></img>
+            <div className='shadow'>
+              <img
+                src={film.movie_banner}
+                alt={film.title}
+                className='filmBanner'
+              ></img>
+            </div>
             <div className='favToggle' onClick={() => toggleFavorite(film)}>
               {isFavorite ? '♥' : '♡'}
             </div>
