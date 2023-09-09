@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #ffffffde;
   
 
   font-synthesis: none;
@@ -51,7 +51,7 @@ header {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 4px;
   border-bottom: 4px solid #777777;
   width: 100%;
 }
@@ -127,11 +127,17 @@ button:active, select:active, input:active {
   margin-bottom: 10px;
 }
 
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  margin-right: 20px;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 4px;
 }
 
 .slideContainer {
@@ -149,7 +155,7 @@ button:active, select:active, input:active {
 }
 
 .infoBox {
-  border: 1px solid white;
+  border: 1px solid #ffffffde;
   padding: 10px;
   width: 90%;
   display: flex;
@@ -181,6 +187,27 @@ button:active, select:active, input:active {
   z-index: -1;
   opacity: 50%;
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.favToggle {
+  position: absolute;
+  top: 20px;
+  right: 30px; 
+  transform: scale(260%);
+  opacity: 20%;
+}
+
+.favToggle:hover {
+  opacity: 60%;
+  transform: scale(320%);
+  transition: transform 0.2s;
+}
+
+.favToggle:active {
+  opacity: 40%;
+  transform: translateY(1px);
+  transform: scale(280%);
+  transition: opacity 0.1s, transform 0.1s;
 }
 
 .imgBox {
@@ -223,15 +250,14 @@ button:active, select:active, input:active {
 }
 
 .filmDate {
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-family: "Georgia" serif;
-  font-weight: bold;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   color: white;
 }
 
 .filmDirector {
-  font-size: 1.4em;
+  font-size: .95em;
   font-family: "Georgia" serif;
   font-style: italic;
   margin-bottom: 4px;
@@ -239,7 +265,47 @@ button:active, select:active, input:active {
   color: white;
 }
 
+.filmProducer {
+  font-size: .95em;
+  font-family: "Georgia" serif;
+  font-style: italic;
+  margin-bottom: 4px;
+  margin-left: 10px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
 .filmDesc {
+  font-size: .85em;
+  font-family: "Avant Garde" sans-serif;
+  margin-bottom: 10px;
+  line-height: 1;
+  width: 100%;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.extraInfoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.extraInfoBox {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.extraInfoBox2 {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filmTime {
   font-size: .9em;
   font-family: "Avant Garde" sans-serif;
   margin-bottom: 10px;
@@ -269,17 +335,166 @@ button:active, select:active, input:active {
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
-.filmTime {
-  font-size: .9em;
-  font-family: "Avant Garde" sans-serif;
-  margin-bottom: 10px;
-  line-height: 1;
-  width: 100%;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-  color: white;
-}
-
 .buttonBox {
   margin-top: 10px;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.favContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  border-top: 1px solid #3d3d3d;
+  margin-bottom: 30px;
+}
+
+.yourFavs {
+  font-size: 1.5em;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bold;
+  margin-top: 10px;
+  border-bottom: 1px solid #ffffffde;
+  margin-bottom: 2px;
+}
+
+.yourJapanese {
+  font-size: 1.3em;
+  font-family: "Avant Garde" sans-serif;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.favFilmList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.favFilmContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.favFilmContainer:hover {
+  transform: translateY(-2px);
+  transform: scale(105%);
+  transition: transform 0.2s;
+}
+
+.favFilmContainer:active {
+  transform: translateY(2px);
+  transform: scale(100%);
+  transition: transform 0.2s;
+}
+
+.favFilmBox {
+  width: 180px;
+  height: 250px;
+  border: 1px solid #ffffffde;
+  margin: 8px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.favFilmBox:hover {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-blend-mode: overlay;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease-in-out;
+}
+
+.favFilmBox:active {
+  background: linear-gradient(140deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.2));
+  background-blend-mode: overlay;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease-in-out;
+}
+
+.favDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.favImgBox {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+}
+
+.favImg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.favFilmInfo {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favFilmInfoBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.favTitle {
+  font-size: 1.05em;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bold;
+  color: #ffffffde;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favJapanese {
+  font-size: 1.05em;
+  font-family: "Avant Garde" sans-serif;
+  font-style: italic;
+  color: #ffffffde;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footer {
+  margin-top: 10px;
+  border-top: 1px solid #3d3d3d;
+}
+
+.ghibliFooter {
+  font-size: 1.05em;
+  font-family: "Avant Garde" sans-serif;
+  font-style: italic;
+  margin-top: 10px;
+  color: #8e8e8ede;
+}
+
+.allRights {
+  font-size: .9em;
+  font-family: "Avant Garde" sans-serif;
+  font-style: italic;
+  color: #616161de;
+  margin-bottom: 15px;
 }

@@ -15,11 +15,43 @@ function App() {
   const [timer, setTimer] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [goInputValue, setGoInputValue] = useState('');
+  const [favorites, setFavorites] = useState([]);
+  const [favoritesMapping, setFavoritesMapping] = useState({});
   const lastFilmIndex = filmData.length - 1;
   const sortedFilms = [...filmData];
   const numPages = films.length;
   const curPage = activeFilmIndex;
   const paginationSequence = generate(curPage, numPages);
+
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem('favorites');
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   const mapping = {};
+  //   favorites.forEach((favorite, index) => {
+  //     const sortedIndex = sortedFilms.findIndex(
+  //       (film) => film.title === favorite.title
+  //     );
+  //     if (sortedIndex !== -1) {
+  //       mapping[index] = sortedIndex;
+  //     }
+  //   });
+
+  //   if (Object.keys(mapping).length > 0) {
+  //     setFavoritesMapping(mapping);
+  //   }
+  // }, [favorites, sortedFilms]);
+
+  const handleFavoriteClick = (index) => {
+    const sortedIndex = favoritesMapping[index];
+    if (sortedIndex !== undefined) {
+      setActiveFilmIndex(sortedIndex);
+    }
+  };
 
   const handleChange = (e) => {
     const selectedValue = e.target.value;
@@ -55,6 +87,21 @@ function App() {
       sortedFilms.sort((a, b) => b.rt_score - a.rt_score);
       setFilms(sortedFilms);
     }
+  };
+
+  const toggleFavorite = (film) => {
+    const updatedFavorites = [...favorites];
+    const filmIndex = updatedFavorites.findIndex(
+      (favoriteFilm) => favoriteFilm.title === film.title
+    );
+
+    if (filmIndex !== -1) {
+      updatedFavorites.splice(filmIndex, 1);
+    } else {
+      updatedFavorites.push(film);
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   const autoProgNextFilm = () => {
@@ -135,7 +182,11 @@ function App() {
         (film, index) =>
           activeFilmIndex === index && (
             <div key={index}>
-              <FilmCard film={film} />
+              <FilmCard
+                film={film}
+                toggleFavorite={toggleFavorite}
+                favorites={favorites}
+              />
             </div>
           )
       )}
@@ -214,6 +265,39 @@ function App() {
             {page}
           </button>
         ))}
+      </div>
+      <div className='favContainer'>
+        <p className='yourFavs'>FAVORITES</p>
+        <p className='yourJapanese'>お気に入り</p>
+        <div className='favFilmList'>
+          {favorites.map((favorite, index) => (
+            <div
+              className='favFilmContainer'
+              key={index}
+              onClick={() => handleFavoriteClick(index)}
+            >
+              <div className='favFilmBox'>
+                <img
+                  src={favorite.image}
+                  alt={favorite.title}
+                  className='favImg'
+                />
+              </div>
+              <div className='favFilmInfo'>
+                <div className='favFilmInfoBox'>
+                  <p className='favTitle'>{favorite.title}</p>
+                  <p className='favJapanese'>{favorite.original_title}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className='footer'>
+        <p className='ghibliFooter'>
+          © <strong>Studio Ghibli</strong>, Inc.
+        </p>
+        <p className='allRights'>All Rights Reserved</p>
       </div>
     </>
   );
