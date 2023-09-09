@@ -79,13 +79,7 @@ const generateFromObj = (opts = {}) => {
     glue = '…',
   } = opts;
 
-  return generate(
-    curPage,
-    numPages,
-    numPagesAtEdges,
-    numPagesAroundCurrent,
-    glue
-  );
+  return generate(curPage, numPages, numPagesAtEdges, numPagesAroundCurrent);
 };
 
 export { generate, generateFromObj };

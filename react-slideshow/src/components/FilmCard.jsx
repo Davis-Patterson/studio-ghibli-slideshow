@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import vignette from 'assets/vignette.png';
 
 const FilmCard = ({ film, toggleFavorite, favorites }) => {
   const [isFilmJapanese, setIsFilmJapanese] = useState(true);
@@ -9,18 +8,7 @@ const FilmCard = ({ film, toggleFavorite, favorites }) => {
 
   return (
     <>
-      <div className='filterContainer'>
-        {/* <select multiple>
-          <label>
-            <input
-              type='checkbox'
-              value='filmJapanese'
-              onChange={() => setIsFilmJapanese(!isFilmJapanese)}
-            />
-            Japanese
-          </label>
-        </select> */}
-      </div>
+      <div className='filterContainer'></div>
       <div className='container'>
         <div className='slideContainer'>
           <h2 className='filmTitle'>{film.title}</h2>
@@ -65,9 +53,11 @@ const FilmCard = ({ film, toggleFavorite, favorites }) => {
                   <p className='rtScore'>🍅 {film.rt_score}%</p>
                 </div>
               </div>
-              <a className='filmUrl' href={film.url} alt={film.title}>
-                Click to see film page
-              </a>
+              <div className='urlBox'>
+                <a className='filmUrl' href={film.url} alt={film.title}>
+                  Click to see film page
+                </a>
+              </div>
             </div>
           </div>
         </div>

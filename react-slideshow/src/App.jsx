@@ -218,19 +218,13 @@ function App() {
         >
           &#60; Back
         </button>
-        <button
-          className='nextButton'
-          onClick={() => setActiveFilmIndex(activeFilmIndex + 1)}
-          disabled={activeFilmIndex === lastFilmIndex}
-        >
-          Next &#62;
-        </button>
         <input
           type='number'
           className='goInput'
           name='Go'
           min='1'
           max={numPages}
+          defaultValue='0'
           value={goInputValue}
           onChange={(e) => {
             const inputValue = parseInt(e.target.value, 10);
@@ -245,7 +239,15 @@ function App() {
               alert('Please enter a valid page number');
             }
           }}
-        ></input>
+          placeholder='0'
+        />
+        <button
+          className='nextButton'
+          onClick={() => setActiveFilmIndex(activeFilmIndex + 1)}
+          disabled={activeFilmIndex === lastFilmIndex}
+        >
+          Next &#62;
+        </button>
       </div>
       <div className='pagination'>
         {paginationSequence.map((page, index) => (

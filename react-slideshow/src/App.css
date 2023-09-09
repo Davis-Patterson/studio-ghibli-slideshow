@@ -203,18 +203,18 @@ button:active, select:active, input:active {
   top: 20px;
   right: 30px; 
   transform: scale(260%);
-  opacity: 20%;
+  opacity: 50%;
   cursor: pointer;
 }
 
 .favToggle:hover {
-  opacity: 60%;
+  opacity: 90%;
   transform: scale(320%);
   transition: transform 0.2s;
 }
 
 .favToggle:active {
-  opacity: 40%;
+  opacity: 70%;
   transform: translateY(1px);
   transform: scale(280%);
   transition: opacity 0.1s, transform 0.1s;
@@ -283,7 +283,7 @@ button:active, select:active, input:active {
 }
 
 .extraInfoBox {
-  width: 30%;
+  /* width: 160px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -335,23 +335,31 @@ button:active, select:active, input:active {
 }
 
 .filmTime {
-  font-size: .9em;
+  font-size: 1em;
   font-family: "Avant Garde" sans-serif;
   margin-bottom: 10px;
   line-height: 1;
-  width: 100%;
+  justify-content: right;
+  padding-right: 5px;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   color: white;
 }
 
 .rtScore {
-  font-size: 1.1em;
+  font-size: 1em;
   font-family: "Avant Garde" sans-serif;
   margin-bottom: 10px;
   line-height: 1;
-  width: 100%;
+  justify-content: left;
+  padding-left: 5px;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   color: white;
+}
+
+.urlBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .filmUrl {
@@ -360,7 +368,7 @@ button:active, select:active, input:active {
   font-weight: bold;
   color: white;
   line-height: 1;
-  width: 100%;
+  width: 150px;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
