@@ -1,6 +1,13 @@
 import { useState } from 'react';
+import ProgressBar from 'react-animated-progress-bar';
 
-const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
+const FilmCard = ({
+  film,
+  toggleFavorite,
+  favorites,
+  setProgress,
+  progress,
+}) => {
   const [isFilmJapanese, setIsFilmJapanese] = useState(true);
   const isFavorite = favorites.some(
     (favoriteFilm) => favoriteFilm.title === film.title
@@ -56,7 +63,21 @@ const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
                   Click to see film page
                 </a>
               </div>
-              {/* <ProgressBar className='progress-bar' /> */}
+              <div className='progressContainer' onClick={() => setProgress(0)}>
+                <ProgressBar
+                  className='progress-bar'
+                  width='60'
+                  trackWidth='50'
+                  percentage={progress}
+                  defColor={{
+                    fair: 'white',
+                    good: 'white',
+                    excellent: 'white',
+                    poor: 'white',
+                  }}
+                  fontColor='none'
+                />
+              </div>
             </div>
           </div>
         </div>

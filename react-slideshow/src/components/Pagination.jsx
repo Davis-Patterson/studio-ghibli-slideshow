@@ -9,13 +9,13 @@ const generate = (
 ) => {
   const numItemsInSequence =
     1 + numPagesAroundCurrent * 2 + numPagesAtEdges * 2 + 2;
-  const reworkedCurPage = Math.min(curPage, numPages);
+  const reworkedCurPage = Math.min(curPage + 1, numPages);
   let finalSequence = [];
 
   if (numPages <= numItemsInSequence) {
     finalSequence = range(1, numPages);
   } else {
-    const start = numPagesAtEdges > 0 ? 1 : reworkedCurPage;
+    const start = numPagesAtEdges > 0 ? 1 : reworkedCurPage + 1;
 
     const sequence = {
       leftEdge: null,

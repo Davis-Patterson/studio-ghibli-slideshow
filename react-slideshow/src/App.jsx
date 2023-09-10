@@ -10,6 +10,7 @@ import ghibliSootImg from 'assets/ghibli-soot.png';
 
 function App() {
   const initialIndexValue = 0;
+  const autoProgTime = 30;
   const [films, setFilms] = useState(filmData);
   const [activeFilmIndex, setActiveFilmIndex] = useState(initialIndexValue);
   const [isPaused, setIsPaused] = useState(false);
@@ -121,7 +122,7 @@ function App() {
           return prevProgress;
         }
       });
-    }, 40);
+    }, autoProgTime);
 
     if (progress === 100 && isAutoProgressing) {
       autoProgNextFilm();
@@ -234,6 +235,7 @@ function App() {
                 film={film}
                 toggleFavorite={toggleFavorite}
                 favorites={favorites}
+                setProgress={setProgress}
                 progress={progress}
               />
             </div>

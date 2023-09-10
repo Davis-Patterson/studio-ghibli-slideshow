@@ -373,6 +373,34 @@ button:active, select:active, input:active {
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
+.progressContainer {
+  height: 31px;
+  position: absolute;
+  right: 14px;
+  top: 87.5%;
+  opacity: 33%;
+  border-radius: 31px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+}
+
+.progressContainer:hover {
+  transform: scale(120%);
+  opacity: 80%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .6);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.progressContainer:active {
+  transform: scale(105%);
+  opacity: 50%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.progress-bar-percent {
+  display: none;
+}
+
 .buttonBox {
   margin-top: 10px;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
@@ -380,22 +408,7 @@ button:active, select:active, input:active {
 
 .page-item-active {
   border: 1px solid rgb(112, 112, 240);
-  position: relative;
-  overflow: hidden;
 }
-
-.page-item-active::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; 
-  background-image: linear-gradient(to right, #8d8de7, #3737bd);
-  opacity: 0;
-  transition: opacity 4s;
-}
-
 
 .favContainer {
   display: flex;
