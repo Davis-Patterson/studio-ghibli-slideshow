@@ -1,3 +1,6 @@
+import shortFilmData from 'assets/film-data.json';
+import filmData from 'assets/mega-film-data.json';
+
 const ButtonBox = ({
   initialIndexValue,
   isPaused,
@@ -8,11 +11,61 @@ const ButtonBox = ({
   setGoInputValue,
   setProgress,
   numPages,
-  curPage,
   lastFilmIndex,
-  paginationSequence,
-  handleChange,
+  setFilms,
 }) => {
+  const sortedFilms = [...filmData];
+
+  const handleChange = (e) => {
+    const selectedValue = e.target.value;
+    if (selectedValue === 'default') {
+      setFilms(filmData);
+    } else if (selectedValue === 'short') {
+      setFilms(shortFilmData);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'title-asc') {
+      sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'director-asc') {
+      sortedFilms.sort((a, b) => a.director.localeCompare(b.director));
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'producer-asc') {
+      sortedFilms.sort((a, b) => a.producer.localeCompare(b.producer));
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'title-desc') {
+      sortedFilms.sort((a, b) => b.title.localeCompare(a.title));
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'date-asc') {
+      sortedFilms.sort((a, b) => a.release_date - b.release_date);
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'date-desc') {
+      sortedFilms.sort((a, b) => b.release_date - a.release_date);
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'time-asc') {
+      sortedFilms.sort((a, b) => a.running_time - b.running_time);
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'time-desc') {
+      sortedFilms.sort((a, b) => b.running_time - a.running_time);
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'score-asc') {
+      sortedFilms.sort((a, b) => a.rt_score - b.rt_score);
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    } else if (selectedValue === 'score-desc') {
+      sortedFilms.sort((a, b) => b.rt_score - a.rt_score);
+      setFilms(sortedFilms);
+      setActiveFilmIndex(0);
+    }
+  };
+
   return (
     <>
       <div className='buttonBox'>
@@ -86,24 +139,6 @@ const ButtonBox = ({
         >
           Next &#62;
         </button>
-      </div>
-      <div className='pagination'>
-        {paginationSequence.map((page, index) => (
-          <button
-            key={index}
-            // className='page-item'
-            className={page === curPage + 1 ? 'page-item-active' : 'page-item'}
-            onClick={() => {
-              if (page !== '...') {
-                setActiveFilmIndex(page - 1);
-                setProgress(0);
-              }
-            }}
-            disabled={page === '...'}
-          >
-            {page}
-          </button>
-        ))}
       </div>
     </>
   );

@@ -10,6 +10,10 @@
   content: url('assets/ghibli-empty.png')
 }
 
+.ghibliSoot:active {
+  content: url('assets/ghibli-soot4.png')
+}
+
 .ghibliSoot {
   right: 72.5%;
 }
@@ -23,6 +27,10 @@
   content: url('assets/ghibli-empty.png')
 }
 
+.ghibliSoot2:active {
+  content: url('assets/ghibli-soot4.png')
+}
+
 .ghibliSoot3 {
   right: 22.5%;
 }
@@ -32,6 +40,10 @@
   content: url('assets/ghibli-empty.png')
 }
 
+.ghibliSoot3:active {
+  content: url('assets/ghibli-soot4.png')
+}
+
 .ghibliSoot4 {
   right: 18.5%;
 }
@@ -39,6 +51,10 @@
 .ghibliSoot4:hover {
   animation: sootHoverEffect 0.5s ease-in-out;
   content: url('assets/ghibli-empty.png')
+}
+
+.ghibliSoot4:active {
+  content: url('assets/ghibli-soot4.png')
 }
 
 .ghibliCat {
@@ -52,7 +68,10 @@
 .ghibliCat:hover {
   animation: catHoverEffect 0.5s ease-in-out;
   content: url('assets/ghibli-empty.png')
+}
 
+.ghibliCat:active {
+  content: url('assets/ghibli-cat4.png')
 }
 
 .ghibliKaonashi {
@@ -67,6 +86,10 @@
 .ghibliKaonashi:hover {
   animation: kaonashiHoverEffect 0.5s ease-in-out;
   content: url('assets/ghibli-empty.png')
+}
+
+.ghibliKaonashi:active {
+  content: url('assets/ghibli-Kaonashi4.png')
 }
 
 @keyframes kaonashiHoverEffect {

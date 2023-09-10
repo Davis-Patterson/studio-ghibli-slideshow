@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ProgressBar from 'react-animated-progress-bar';
+// import Progress from 'components/Progress';
 import PropTypes from 'prop-types';
 
 const FilmCard = ({
@@ -68,6 +69,7 @@ const FilmCard = ({
                   Click to see film page
                 </a>
               </div>
+              {/* <Progress progress={progress} /> */}
               <div className='progressContainer' onClick={() => setProgress(0)}>
                 <ProgressBar
                   className='progress-bar'

@@ -3,10 +3,9 @@ import './App.css';
 import Header from 'components/Header';
 import FilmCard from 'components/FilmCard';
 import ButtonBox from 'components/ButtonBox';
+import PageButtons from 'components/PageButtons';
 import FavContainer from 'components/FavContainer';
 import Footer from 'components/Footer';
-import { generate } from 'components/Pagination';
-import shortFilmData from 'assets/film-data.json';
 import filmData from 'assets/mega-film-data.json';
 
 function App() {
@@ -19,10 +18,8 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [progress, setProgress] = useState(0);
   const lastFilmIndex = filmData.length - 1;
-  const sortedFilms = [...filmData];
   const numPages = films.length;
   const curPage = activeFilmIndex;
-  const paginationSequence = generate(curPage, numPages);
 
   const autoProgTime = desiredSeconds * 10;
 
@@ -36,56 +33,6 @@ function App() {
   const handleFavoriteClick = (title) => {
     const favIndex = films.findIndex((film) => film.title === title);
     setActiveFilmIndex(favIndex);
-  };
-
-  const handleChange = (e) => {
-    const selectedValue = e.target.value;
-    if (selectedValue === 'default') {
-      setFilms(filmData);
-    } else if (selectedValue === 'short') {
-      setFilms(shortFilmData);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'title-asc') {
-      sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'director-asc') {
-      sortedFilms.sort((a, b) => a.director.localeCompare(b.director));
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'producer-asc') {
-      sortedFilms.sort((a, b) => a.producer.localeCompare(b.producer));
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'title-desc') {
-      sortedFilms.sort((a, b) => b.title.localeCompare(a.title));
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'date-asc') {
-      sortedFilms.sort((a, b) => a.release_date - b.release_date);
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'date-desc') {
-      sortedFilms.sort((a, b) => b.release_date - a.release_date);
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'time-asc') {
-      sortedFilms.sort((a, b) => a.running_time - b.running_time);
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'time-desc') {
-      sortedFilms.sort((a, b) => b.running_time - a.running_time);
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'score-asc') {
-      sortedFilms.sort((a, b) => a.rt_score - b.rt_score);
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    } else if (selectedValue === 'score-desc') {
-      sortedFilms.sort((a, b) => b.rt_score - a.rt_score);
-      setFilms(sortedFilms);
-      setActiveFilmIndex(0);
-    }
   };
 
   const toggleFavorite = (film) => {
@@ -174,10 +121,14 @@ function App() {
         setGoInputValue={setGoInputValue}
         setProgress={setProgress}
         numPages={numPages}
-        curPage={curPage}
         lastFilmIndex={lastFilmIndex}
-        paginationSequence={paginationSequence}
-        handleChange={handleChange}
+        setFilms={setFilms}
+      />
+      <PageButtons
+        curPage={curPage}
+        numPages={numPages}
+        setActiveFilmIndex={setActiveFilmIndex}
+        setProgress={setProgress}
       />
       <FavContainer
         favorites={favorites}
