@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const FilmCard = ({ film, toggleFavorite, favorites }) => {
+const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
   const [isFilmJapanese, setIsFilmJapanese] = useState(true);
   const isFavorite = favorites.some(
     (favoriteFilm) => favoriteFilm.title === film.title
@@ -31,9 +31,7 @@ const FilmCard = ({ film, toggleFavorite, favorites }) => {
               <p className='titleRomanised'>
                 "{film.original_title_romanised}"
               </p>
-              <p className='filmDate'>
-                <strong>Released:</strong> {film.release_date}
-              </p>
+              <p className='filmDate'>{film.release_date}</p>
               <div className='directorContainer'>
                 <div className='directorBox'>
                   <p className='filmDirector'>
@@ -58,6 +56,7 @@ const FilmCard = ({ film, toggleFavorite, favorites }) => {
                   Click to see film page
                 </a>
               </div>
+              {/* <ProgressBar className='progress-bar' /> */}
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ function App() {
   const [isPaused, setIsPaused] = useState(false);
   const [goInputValue, setGoInputValue] = useState('');
   const [favorites, setFavorites] = useState([]);
-  const [favoritesMapping, setFavoritesMapping] = useState({});
+  const [progress, setProgress] = useState(0);
   const lastFilmIndex = filmData.length - 1;
   const sortedFilms = [...filmData];
   const numPages = films.length;
@@ -115,14 +115,28 @@ function App() {
       clearTimeout(timer);
     }
 
+    setProgress(0);
+
     const newTimer = setTimeout(() => {
       autoProgNextFilm();
     }, 4000);
+
+    const progressTimer = setInterval(() => {
+      setProgress((prevProgress) => {
+        if (prevProgress < 100) {
+          return prevProgress + 1;
+        } else {
+          clearInterval(progressTimer);
+          return 0;
+        }
+      });
+    }, 40);
 
     setTimer(newTimer);
 
     return () => {
       clearTimeout(newTimer);
+      clearInterval(progressTimer);
     };
   }, [activeFilmIndex, isPaused]);
 
@@ -174,6 +188,7 @@ function App() {
           alt='ghibli-soot-4'
         ></img>
       </header>
+      {console.log('progress: ', progress)}
       {films.map(
         (film, index) =>
           activeFilmIndex === index && (
@@ -182,6 +197,7 @@ function App() {
                 film={film}
                 toggleFavorite={toggleFavorite}
                 favorites={favorites}
+                progress={progress}
               />
             </div>
           )
@@ -224,7 +240,6 @@ function App() {
           name='Go'
           min='1'
           max={numPages}
-          defaultValue='0'
           value={goInputValue}
           onChange={(e) => {
             const inputValue = parseInt(e.target.value, 10);
@@ -253,7 +268,8 @@ function App() {
         {paginationSequence.map((page, index) => (
           <button
             key={index}
-            className='page-item'
+            // className='page-item'
+            className={page === curPage + 1 ? 'page-item-active' : 'page-item'}
             onClick={() => {
               if (page !== '...') {
                 setActiveFilmIndex(page - 1);

@@ -155,7 +155,7 @@ button:active, select:active, input:active {
 }
 
 .infoBox {
-  border: 1px solid #ffffffde;
+  border: 1px solid #828282de;
   padding: 10px;
   width: 90%;
   display: flex;
@@ -245,9 +245,11 @@ button:active, select:active, input:active {
 
 .filmJapanese {
   font-size: 1.8em;
+  line-height: 1.2;
   font-weight: bolder;
   text-shadow: 0 0 8px rgba(0, 0, 0, 1);
   color: white;
+  margin-top: 20px;
 }
 
 .titleRomanised {
@@ -256,11 +258,10 @@ button:active, select:active, input:active {
   font-style: italic;
   text-shadow: 0 0 8px rgba(0, 0, 0, 1);
   color: white;
-  margin-bottom: 10px;
 }
 
 .filmDate {
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-family: "Georgia" serif;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   color: white;
@@ -377,6 +378,25 @@ button:active, select:active, input:active {
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
+.page-item-active {
+  border: 1px solid rgb(112, 112, 240);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-item-active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background-image: linear-gradient(to right, #8d8de7, #3737bd);
+  opacity: 0;
+  transition: opacity 4s;
+}
+
+
 .favContainer {
   display: flex;
   justify-content: center;
@@ -433,7 +453,7 @@ button:active, select:active, input:active {
 .favFilmBox {
   width: 180px;
   height: 250px;
-  border: 1px solid #ffffffde;
+  border: 1px solid #828282de;
   margin: 8px;
   border-radius: 15px;
   display: flex;
