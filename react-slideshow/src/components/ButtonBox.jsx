@@ -11,6 +11,7 @@ const ButtonBox = ({
   curPage,
   lastFilmIndex,
   paginationSequence,
+  handleChange,
 }) => {
   return (
     <>

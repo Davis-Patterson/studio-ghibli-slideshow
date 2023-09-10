@@ -177,6 +177,7 @@ function App() {
         curPage={curPage}
         lastFilmIndex={lastFilmIndex}
         paginationSequence={paginationSequence}
+        handleChange={handleChange}
       />
       <FavContainer
         favorites={favorites}
