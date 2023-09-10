@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ProgressBar from 'react-animated-progress-bar';
+import PropTypes from 'prop-types';
 
 const FilmCard = ({
   film,
@@ -12,6 +13,10 @@ const FilmCard = ({
   const isFavorite = favorites.some(
     (favoriteFilm) => favoriteFilm.title === film.title
   );
+
+  ProgressBar.propTypes = {
+    percentage: PropTypes.number.isRequired,
+  };
 
   return (
     <>

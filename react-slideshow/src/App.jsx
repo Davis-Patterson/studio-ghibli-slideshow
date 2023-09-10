@@ -10,19 +10,20 @@ import ghibliSootImg from 'assets/ghibli-soot.png';
 
 function App() {
   const initialIndexValue = 0;
-  const autoProgTime = 30;
+  const desiredSeconds = 3;
   const [films, setFilms] = useState(filmData);
   const [activeFilmIndex, setActiveFilmIndex] = useState(initialIndexValue);
   const [isPaused, setIsPaused] = useState(false);
   const [goInputValue, setGoInputValue] = useState('');
   const [favorites, setFavorites] = useState([]);
   const [progress, setProgress] = useState(0);
-  const [isAutoProgressing, setIsAutoProgressing] = useState(true);
   const lastFilmIndex = filmData.length - 1;
   const sortedFilms = [...filmData];
   const numPages = films.length;
   const curPage = activeFilmIndex;
   const paginationSequence = generate(curPage, numPages);
+
+  const autoProgTime = desiredSeconds * 10;
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favorites');
@@ -102,7 +103,7 @@ function App() {
   };
 
   const autoProgNextFilm = () => {
-    if (isAutoProgressing) {
+    if (!isPaused) {
       if (activeFilmIndex < lastFilmIndex) {
         setActiveFilmIndex((index) => index + 1);
         setProgress(0);
@@ -124,75 +125,18 @@ function App() {
       });
     }, autoProgTime);
 
-    if (progress === 100 && isAutoProgressing) {
+    if (progress === 100 && !isPaused) {
       autoProgNextFilm();
     }
 
     return () => {
       clearInterval(progressTimer);
     };
-  }, [isPaused, progress, isAutoProgressing, autoProgNextFilm]);
+  }, [isPaused, autoProgNextFilm]);
 
   const pauseToggle = () => {
     setIsPaused(!isPaused);
-    setIsAutoProgressing(!isAutoProgressing);
   };
-
-  // const autoProgNextFilm = () => {
-  //   if (!isPaused) {
-  //     if (activeFilmIndex < lastFilmIndex) {
-  //       setActiveFilmIndex((index) => index + 1);
-  //     } else {
-  //       setActiveFilmIndex(initialIndexValue);
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (timer) {
-  //     clearTimeout(timer);
-  //   }
-
-  //   setProgress(0);
-
-  //   const newTimer = setTimeout(() => {
-  //     autoProgNextFilm();
-  //   }, 4000);
-
-  //   const progressTimer = setInterval(() => {
-  //     setProgress((prevProgress) => {
-  //       if (isPaused || prevProgress >= 100) {
-  //         return prevProgress;
-  //       } else {
-  //         clearInterval(progressTimer);
-  //         return prevProgress + 1;
-  //       }
-  //     });
-  //   }, 40);
-
-  //   setTimer(newTimer);
-
-  //   return () => {
-  //     clearTimeout(newTimer);
-  //     clearInterval(progressTimer);
-  //   };
-  // }, [activeFilmIndex, isPaused]);
-
-  // const pauseToggle = () => {
-  //   setIsPaused(!isPaused);
-
-  //   if (!isPaused) {
-  //     if (timer) {
-  //       clearTimeout(timer);
-  //     }
-
-  //     const newTimer = setTimeout(() => {
-  //       autoProgNextFilm();
-  //     }, 4000);
-
-  //     setTimer(newTimer);
-  //   }
-  // };
 
   return (
     <>
@@ -226,7 +170,7 @@ function App() {
           alt='ghibli-soot-4'
         ></img>
       </header>
-      {console.log('progress: ', progress)}
+      {console.log('progress, ', progress)}
       {films.map(
         (film, index) =>
           activeFilmIndex === index && (

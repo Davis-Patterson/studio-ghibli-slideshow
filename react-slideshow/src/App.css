@@ -215,7 +215,6 @@ button:active, select:active, input:active {
 
 .favToggle:active {
   opacity: 70%;
-  transform: translateY(1px);
   transform: scale(280%);
   transition: opacity 0.1s, transform 0.1s;
 }
