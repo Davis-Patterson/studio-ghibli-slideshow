@@ -579,3 +579,13 @@ button:active, select:active, input:active {
   font-style: italic;
   color: #616161de;
 }
+
+.checkText {
+  font-size: .8em;
+  font-family: "Avant Garde" sans-serif;
+  color: #8e8e8ede;
+}
+
+.checkBox {
+  color: red;
+}

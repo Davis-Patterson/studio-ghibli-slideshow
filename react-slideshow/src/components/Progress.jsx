@@ -1,7 +1,7 @@
 import ProgressBar from 'react-animated-progress-bar';
 import PropTypes from 'prop-types';
 
-const Progress = (progress) => {
+const Progress = ({ progress }) => {
   const validProgress =
     Number.isFinite(progress) && progress >= 0 && progress <= 100
       ? progress
@@ -11,12 +11,8 @@ const Progress = (progress) => {
     percentage: PropTypes.number.isRequired,
   };
 
-  {
-    console.log(`Progress: ${progress}`);
-  }
-  {
-    console.log(`validProgress: ${validProgress}`);
-  }
+  // console.log(`Progress: ${progress}`);
+  // console.log(`validProgress: ${validProgress}`);
 
   return (
     <>
@@ -25,7 +21,7 @@ const Progress = (progress) => {
           className='progress-bar'
           width='60'
           trackWidth='50'
-          percentage={progress}
+          percentage={validProgress}
           defColor={{
             fair: 'white',
             good: 'white',

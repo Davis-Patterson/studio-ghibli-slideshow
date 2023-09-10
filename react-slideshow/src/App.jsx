@@ -79,7 +79,7 @@ function App() {
     if (progress === 100 && !isPaused) {
       const curTriggerTime = performance.now();
       const triggered = curTriggerTime - prevTriggerTime;
-      console.log(`Triggered: ${triggered.toFixed(2)}s`);
+      // console.log(`Triggered: ${triggered.toFixed(2)}s`);
       prevTriggerTime = curTriggerTime;
       autoProgNextFilm();
     }
@@ -105,7 +105,6 @@ function App() {
                 film={film}
                 toggleFavorite={toggleFavorite}
                 favorites={favorites}
-                setProgress={setProgress}
                 progress={progress}
               />
             </div>

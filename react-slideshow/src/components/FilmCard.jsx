@@ -1,92 +1,126 @@
 import { useState } from 'react';
-import ProgressBar from 'react-animated-progress-bar';
-// import Progress from 'components/Progress';
-import PropTypes from 'prop-types';
+import Progress from 'components/Progress';
+import Checkboxes from 'components/Checkboxes';
 
-const FilmCard = ({
-  film,
-  toggleFavorite,
-  favorites,
-  setProgress,
-  progress,
-}) => {
-  const [isFilmJapanese, setIsFilmJapanese] = useState(true);
+const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
+  const [isFilmTitle, setIsFilmTitle] = useState(true);
+  const [isFilmBan, setIsFilmBan] = useState(true);
+  const [isFilmImg, setIsFilmImg] = useState(true);
+  const [isFilmJa, setIsFilmJa] = useState(true);
+  const [isFilmDate, setIsFilmDate] = useState(true);
+  const [isFilmDir, setIsFilmDir] = useState(true);
+  const [isFilmProd, setIsFilmProd] = useState(true);
+  const [isFilmDesc, setIsFilmDesc] = useState(true);
+  const [isFilmDur, setIsFilmDur] = useState(true);
+  const [isFilmRat, setIsFilmRat] = useState(true);
+  const [isFilmUrl, setIsFilmUrl] = useState(true);
+
   const isFavorite = favorites.some(
     (favoriteFilm) => favoriteFilm.title === film.title
   );
 
-  ProgressBar.propTypes = {
-    percentage: PropTypes.number.isRequired,
-  };
-
   return (
     <>
-      <div className='filterContainer'></div>
       <div className='container'>
         <div className='slideContainer'>
-          <h2 className='filmTitle'>{film.title}</h2>
+          {isFilmTitle ? <h2 className='filmTitle'>{film.title}</h2> : null}
           <div className='infoBox'>
-            <div className='shadow'>
-              <img
-                src={film.movie_banner}
-                alt={film.title}
-                className='filmBanner'
-              ></img>
-            </div>
+            {isFilmBan ? (
+              <div className='shadow'>
+                <img
+                  src={film.movie_banner}
+                  alt={film.title}
+                  className='filmBanner'
+                ></img>
+              </div>
+            ) : null}
             <div className='favToggle' onClick={() => toggleFavorite(film)}>
               {isFavorite ? '♥' : '♡'}
             </div>
-            <div className='imgBox'>
-              <img src={film.image} alt={film.title} className='filmImg'></img>
-            </div>
-            <div className='detailBox'>
-              <p className='filmJapanese'>{film.original_title}</p>
-              <p className='titleRomanised'>
-                "{film.original_title_romanised}"
-              </p>
-              <p className='filmDate'>{film.release_date}</p>
-              <div className='directorContainer'>
-                <div className='directorBox'>
-                  <p className='filmDirector'>
-                    <strong>Director:</strong> {film.director}
-                  </p>
-                </div>
-                <div className='producerBox'>
-                  <p className='filmProducer'>
-                    <strong>Producer:</strong> {film.producer}
-                  </p>
-                </div>
+            {isFilmImg ? (
+              <div className='imgBox'>
+                <img
+                  src={film.image}
+                  alt={film.title}
+                  className='filmImg'
+                ></img>
               </div>
-              <p className='filmDesc'>{film.description}</p>
+            ) : null}
+            <div className='detailBox'>
+              {isFilmJa ? (
+                <p className='filmJapanese'>{film.original_title}</p>
+              ) : null}
+              {isFilmJa ? (
+                <p className='titleRomanised'>
+                  "{film.original_title_romanised}"
+                </p>
+              ) : null}
+              {isFilmDate ? (
+                <p className='filmDate'>{film.release_date}</p>
+              ) : null}
+              <div className='directorContainer'>
+                {isFilmDir ? (
+                  <div className='directorBox'>
+                    <p className='filmDirector'>
+                      <strong>Director:</strong> {film.director}
+                    </p>
+                  </div>
+                ) : null}
+                {isFilmProd ? (
+                  <div className='producerBox'>
+                    <p className='filmProducer'>
+                      <strong>Producer:</strong> {film.producer}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+              {isFilmDesc ? (
+                <p className='filmDesc'>{film.description}</p>
+              ) : null}
               <div className='extraInfoContainer'>
                 <div className='extraInfoBox'>
-                  <p className='filmTime'>⏳ {film.running_time} mins</p>
-                  <p className='rtScore'>🍅 {film.rt_score}%</p>
+                  {isFilmDur ? (
+                    <p className='filmTime'>⏳ {film.running_time} mins</p>
+                  ) : null}
+                  {isFilmRat ? (
+                    <p className='rtScore'>🍅 {film.rt_score}%</p>
+                  ) : null}
                 </div>
               </div>
-              <div className='urlBox'>
-                <a className='filmUrl' href={film.url} alt={film.title}>
-                  Click to see film page
-                </a>
-              </div>
-              {/* <Progress progress={progress} /> */}
-              <div className='progressContainer' onClick={() => setProgress(0)}>
-                <ProgressBar
-                  className='progress-bar'
-                  width='60'
-                  trackWidth='50'
-                  percentage={progress}
-                  defColor={{
-                    fair: 'white',
-                    good: 'white',
-                    excellent: 'white',
-                    poor: 'white',
-                  }}
-                  fontColor='white'
-                />
-              </div>
+              {isFilmUrl ? (
+                <div className='urlBox'>
+                  <a className='filmUrl' href={film.url} alt={film.title}>
+                    Click to see film page
+                  </a>
+                </div>
+              ) : null}
+              <Progress progress={progress} />
             </div>
           </div>
+          <Checkboxes
+            isFilmTitle={isFilmTitle}
+            setIsFilmTitle={setIsFilmTitle}
+            isFilmBan={isFilmBan}
+            setIsFilmBan={setIsFilmBan}
+            isFilmImg={isFilmImg}
+            setIsFilmImg={setIsFilmImg}
+            isFilmJa={isFilmJa}
+            setIsFilmJa={setIsFilmJa}
+            isFilmDate={isFilmDate}
+            setIsFilmDate={setIsFilmDate}
+            isFilmDir={isFilmDir}
+            setIsFilmDir={setIsFilmDir}
+            isFilmProd={isFilmProd}
+            setIsFilmProd={setIsFilmProd}
+            isFilmDesc={isFilmDesc}
+            setIsFilmDesc={setIsFilmDesc}
+            isFilmDur={isFilmDur}
+            setIsFilmDur={setIsFilmDur}
+            isFilmRat={isFilmRat}
+            setIsFilmRat={setIsFilmRat}
+            isFilmUrl={isFilmUrl}
+            setIsFilmUrl={setIsFilmUrl}
+          />
         </div>
       </div>
     </>
