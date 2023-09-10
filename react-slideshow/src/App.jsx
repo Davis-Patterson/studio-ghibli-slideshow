@@ -12,11 +12,11 @@ function App() {
   const initialIndexValue = 0;
   const [films, setFilms] = useState(filmData);
   const [activeFilmIndex, setActiveFilmIndex] = useState(initialIndexValue);
-  const [timer, setTimer] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [goInputValue, setGoInputValue] = useState('');
   const [favorites, setFavorites] = useState([]);
   const [progress, setProgress] = useState(0);
+  const [isAutoProgressing, setIsAutoProgressing] = useState(true);
   const lastFilmIndex = filmData.length - 1;
   const sortedFilms = [...filmData];
   const numPages = films.length;
@@ -101,60 +101,97 @@ function App() {
   };
 
   const autoProgNextFilm = () => {
-    if (!isPaused) {
+    if (isAutoProgressing) {
       if (activeFilmIndex < lastFilmIndex) {
         setActiveFilmIndex((index) => index + 1);
+        setProgress(0);
       } else {
         setActiveFilmIndex(initialIndexValue);
+        setProgress(0);
       }
     }
   };
 
   useEffect(() => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-
-    setProgress(0);
-
-    const newTimer = setTimeout(() => {
-      autoProgNextFilm();
-    }, 4000);
-
     const progressTimer = setInterval(() => {
       setProgress((prevProgress) => {
-        if (prevProgress < 100) {
+        if (!isPaused && prevProgress < 100) {
           return prevProgress + 1;
         } else {
-          clearInterval(progressTimer);
-          return 0;
+          return prevProgress;
         }
       });
     }, 40);
 
-    setTimer(newTimer);
+    if (progress === 100 && isAutoProgressing) {
+      autoProgNextFilm();
+    }
 
     return () => {
-      clearTimeout(newTimer);
       clearInterval(progressTimer);
     };
-  }, [activeFilmIndex, isPaused]);
+  }, [isPaused, progress, isAutoProgressing, autoProgNextFilm]);
 
   const pauseToggle = () => {
     setIsPaused(!isPaused);
-
-    if (!isPaused) {
-      if (timer) {
-        clearTimeout(timer);
-      }
-
-      const newTimer = setTimeout(() => {
-        autoProgNextFilm();
-      }, 4000);
-
-      setTimer(newTimer);
-    }
+    setIsAutoProgressing(!isAutoProgressing);
   };
+
+  // const autoProgNextFilm = () => {
+  //   if (!isPaused) {
+  //     if (activeFilmIndex < lastFilmIndex) {
+  //       setActiveFilmIndex((index) => index + 1);
+  //     } else {
+  //       setActiveFilmIndex(initialIndexValue);
+  //     }
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (timer) {
+  //     clearTimeout(timer);
+  //   }
+
+  //   setProgress(0);
+
+  //   const newTimer = setTimeout(() => {
+  //     autoProgNextFilm();
+  //   }, 4000);
+
+  //   const progressTimer = setInterval(() => {
+  //     setProgress((prevProgress) => {
+  //       if (isPaused || prevProgress >= 100) {
+  //         return prevProgress;
+  //       } else {
+  //         clearInterval(progressTimer);
+  //         return prevProgress + 1;
+  //       }
+  //     });
+  //   }, 40);
+
+  //   setTimer(newTimer);
+
+  //   return () => {
+  //     clearTimeout(newTimer);
+  //     clearInterval(progressTimer);
+  //   };
+  // }, [activeFilmIndex, isPaused]);
+
+  // const pauseToggle = () => {
+  //   setIsPaused(!isPaused);
+
+  //   if (!isPaused) {
+  //     if (timer) {
+  //       clearTimeout(timer);
+  //     }
+
+  //     const newTimer = setTimeout(() => {
+  //       autoProgNextFilm();
+  //     }, 4000);
+
+  //     setTimer(newTimer);
+  //   }
+  // };
 
   return (
     <>
