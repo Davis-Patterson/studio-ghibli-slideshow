@@ -80,7 +80,7 @@ const FilmCard = ({
                     excellent: 'white',
                     poor: 'white',
                   }}
-                  fontColor='none'
+                  fontColor='white'
                 />
               </div>
             </div>
