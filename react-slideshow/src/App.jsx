@@ -259,14 +259,20 @@ function App() {
         </button>
         <button
           className='refreshButton'
-          onClick={() => setActiveFilmIndex(initialIndexValue)}
+          onClick={() => {
+            setActiveFilmIndex(initialIndexValue);
+            setProgress(0);
+          }}
           disabled={activeFilmIndex === initialIndexValue}
         >
           ⟳ Refresh
         </button>
         <button
           className='backButton'
-          onClick={() => setActiveFilmIndex(activeFilmIndex - 1)}
+          onClick={() => {
+            setActiveFilmIndex(activeFilmIndex - 1);
+            setProgress(0);
+          }}
           disabled={activeFilmIndex === initialIndexValue}
         >
           &#60; Back
@@ -287,6 +293,7 @@ function App() {
               inputValue <= numPages
             ) {
               setActiveFilmIndex(inputValue - 1);
+              setProgress(0);
             } else {
               alert('Please enter a valid page number');
             }
@@ -295,7 +302,10 @@ function App() {
         />
         <button
           className='nextButton'
-          onClick={() => setActiveFilmIndex(activeFilmIndex + 1)}
+          onClick={() => {
+            setActiveFilmIndex(activeFilmIndex + 1);
+            setProgress(0);
+          }}
           disabled={activeFilmIndex === lastFilmIndex}
         >
           Next &#62;
@@ -310,6 +320,7 @@ function App() {
             onClick={() => {
               if (page !== '...') {
                 setActiveFilmIndex(page - 1);
+                setProgress(0);
               }
             }}
             disabled={page === '...'}
