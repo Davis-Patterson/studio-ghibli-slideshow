@@ -11,21 +11,25 @@ const PageButtons = ({
   return (
     <>
       <div className='pagination'>
-        {paginationSequence.map((page, index) => (
-          <button
-            key={index}
-            className={page === curPage + 1 ? 'page-item-active' : 'page-item'}
-            onClick={() => {
-              if (page !== '...') {
+        {paginationSequence.map((page, index) =>
+          page !== '...' ? (
+            <button
+              key={index}
+              className={
+                page === curPage + 1 ? 'page-item-active' : 'page-item'
+              }
+              onClick={() => {
                 setActiveFilmIndex(page - 1);
                 setProgress(0);
-              }
-            }}
-            disabled={page === '...'}
-          >
-            {page}
-          </button>
-        ))}
+              }}
+              disabled={page === '...'}
+            >
+              {page}
+            </button>
+          ) : (
+            <div>{page}</div>
+          )
+        )}
       </div>
     </>
   );

@@ -18,7 +18,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [progress, setProgress] = useState(0);
   const [fade, setFade] = useState('in');
-  const lastFilmIndex = filmData.length - 1;
+  const lastFilmIndex = films.length - 1;
   const numPages = films.length;
   const curPage = activeFilmIndex;
 
@@ -54,13 +54,12 @@ function App() {
   const autoProgNextFilm = () => {
     if (!isPaused) {
       setFade('out');
+      setProgress(0);
       setTimeout(() => {
         if (activeFilmIndex < lastFilmIndex) {
           setActiveFilmIndex((index) => index + 1);
-          setProgress(0);
         } else {
           setActiveFilmIndex(initialIndexValue);
-          setProgress(0);
         }
         setFade('in');
       }, 200);
@@ -79,9 +78,6 @@ function App() {
   //   }
   // };
 
-  let prevTriggerTime = performance.now();
-  // console.log('Time set');
-
   useEffect(() => {
     const progressTimer = setInterval(() => {
       setProgress((prevProgress) => {
@@ -94,10 +90,6 @@ function App() {
     }, autoProgTime);
 
     if (progress === 100 && !isPaused) {
-      const curTriggerTime = performance.now();
-      const triggered = curTriggerTime - prevTriggerTime;
-      // console.log(`Triggered: ${triggered.toFixed(2)}s`);
-      prevTriggerTime = curTriggerTime;
       autoProgNextFilm();
     }
 
@@ -113,7 +105,6 @@ function App() {
   return (
     <>
       <Header />
-      {/* {console.log('progress, ', progress)} */}
       {films.map(
         (film, index) =>
           activeFilmIndex === index && (

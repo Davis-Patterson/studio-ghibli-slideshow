@@ -466,8 +466,7 @@ button:active, select:active, input:active {
 .yourJapanese {
   font-size: 1.3em;
   font-family: "Avant Garde" sans-serif;
-  font-style: italic;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .favFilmList {

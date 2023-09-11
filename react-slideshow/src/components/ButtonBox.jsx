@@ -71,7 +71,7 @@ const ButtonBox = ({
       <div className='buttonBox'>
         <select onChange={(e) => handleChange(e)} required>
           <option value='default'>= Sort</option>
-          <option value='short'>= Short</option>
+          <option value='short'>★ Best</option>
           <option value='title-asc'>Title ▲</option>
           <option value='title-desc'>Title ▼</option>
           <option value='director-asc'>Director</option>
