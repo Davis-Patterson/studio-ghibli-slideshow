@@ -27,7 +27,14 @@ const useLocalStorage = (key, initialValue) => {
   return [storedValue, setValue];
 };
 
-const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
+const FilmCard = ({
+  film,
+  toggleFavorite,
+  favorites,
+  progress,
+  setProgress,
+  fade,
+}) => {
   const [isFilmTitle, setIsFilmTitle] = useLocalStorage('isFilmTitle', true);
   const [isFilmBan, setIsFilmBan] = useLocalStorage('isFilmBan', true);
   const [isFilmImg, setIsFilmImg] = useLocalStorage('isFilmImg', true);
@@ -49,7 +56,7 @@ const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
       <div className='container'>
         <div className='slideContainer'>
           {isFilmTitle ? <h2 className='filmTitle'>{film.title}</h2> : null}
-          <div className='infoBox'>
+          <div className={`infoBox ${fade}`}>
             {isFilmBan ? (
               <div className='shadow'>
                 <img
@@ -120,7 +127,7 @@ const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
                 </div>
               ) : null}
             </div>
-            <Progress progress={progress} />
+            <Progress progress={progress} setProgress={setProgress} />
           </div>
         </div>
         <Checkboxes

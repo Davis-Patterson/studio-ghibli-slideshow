@@ -614,3 +614,21 @@ button:active, select:active, input:active {
   font-style: italic;
   color: #616161de;
 }
+
+.in {
+  animation: fadeIn .2s;
+}
+
+.out {
+  animation: fadeOut .2s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

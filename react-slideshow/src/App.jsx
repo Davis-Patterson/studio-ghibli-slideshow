@@ -17,6 +17,7 @@ function App() {
   const [goInputValue, setGoInputValue] = useState('');
   const [favorites, setFavorites] = useState([]);
   const [progress, setProgress] = useState(0);
+  const [fade, setFade] = useState('in');
   const lastFilmIndex = filmData.length - 1;
   const numPages = films.length;
   const curPage = activeFilmIndex;
@@ -52,15 +53,31 @@ function App() {
 
   const autoProgNextFilm = () => {
     if (!isPaused) {
-      if (activeFilmIndex < lastFilmIndex) {
-        setActiveFilmIndex((index) => index + 1);
-        setProgress(0);
-      } else {
-        setActiveFilmIndex(initialIndexValue);
-        setProgress(0);
-      }
+      setFade('out');
+      setTimeout(() => {
+        if (activeFilmIndex < lastFilmIndex) {
+          setActiveFilmIndex((index) => index + 1);
+          setProgress(0);
+        } else {
+          setActiveFilmIndex(initialIndexValue);
+          setProgress(0);
+        }
+        setFade('in');
+      }, 200);
     }
   };
+
+  // const autoProgNextFilm = () => {
+  //   if (!isPaused) {
+  //     if (activeFilmIndex < lastFilmIndex) {
+  //       setActiveFilmIndex((index) => index + 1);
+  //       setProgress(0);
+  //     } else {
+  //       setActiveFilmIndex(initialIndexValue);
+  //       setProgress(0);
+  //     }
+  //   }
+  // };
 
   let prevTriggerTime = performance.now();
   // console.log('Time set');
@@ -106,6 +123,8 @@ function App() {
                 toggleFavorite={toggleFavorite}
                 favorites={favorites}
                 progress={progress}
+                setProgress={setProgress}
+                fade={fade}
               />
             </div>
           )

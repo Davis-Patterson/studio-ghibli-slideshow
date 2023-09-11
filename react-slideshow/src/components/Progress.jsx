@@ -1,7 +1,7 @@
 import ProgressBar from 'react-animated-progress-bar';
 import PropTypes from 'prop-types';
 
-const Progress = ({ progress }) => {
+const Progress = ({ progress, setProgress }) => {
   const validProgress =
     Number.isFinite(progress) && progress >= 0 && progress <= 100
       ? progress
