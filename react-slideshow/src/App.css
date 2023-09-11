@@ -44,7 +44,7 @@ body {
 
 header {
   padding: 30px;
-  background-color: #f6f6f6;
+  background-color: #d1d1d1;
   color: #333333;
   font-size: 30;
   border-bottom: 1px solid #f6f6f6;
@@ -130,8 +130,8 @@ button:active, select:active, input:active {
 .filterContainer {
   display: flex;
   justify-content: center;
-  border: 1px solid #828282de;
-  border-radius: 10px;
+  border: 1px solid #444444;
+  border-radius: 15px;
   padding: 2px;
   position: absolute;
   right: 4px;
