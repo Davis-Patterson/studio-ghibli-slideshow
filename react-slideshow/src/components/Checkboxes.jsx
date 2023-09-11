@@ -1,5 +1,4 @@
 const Checkboxes = ({
-  handleCheckboxChange,
   isFilmTitle,
   setIsFilmTitle,
   isFilmBan,
@@ -22,11 +21,22 @@ const Checkboxes = ({
   setIsFilmRat,
   isFilmUrl,
   setIsFilmUrl,
+  isAllChecked,
+  handleAllCheckboxChange,
 }) => {
   return (
     <>
       <div className='filterContainer'>
         <div className='filterBox'>
+          <label className='checkText'>
+            <input
+              className='checkBox'
+              type='checkbox'
+              checked={isAllChecked}
+              onChange={handleAllCheckboxChange}
+            />
+            All
+          </label>
           <label className='checkText'>
             <input
               className='checkBox'

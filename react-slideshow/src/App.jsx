@@ -66,18 +66,6 @@ function App() {
     }
   };
 
-  // const autoProgNextFilm = () => {
-  //   if (!isPaused) {
-  //     if (activeFilmIndex < lastFilmIndex) {
-  //       setActiveFilmIndex((index) => index + 1);
-  //       setProgress(0);
-  //     } else {
-  //       setActiveFilmIndex(initialIndexValue);
-  //       setProgress(0);
-  //     }
-  //   }
-  // };
-
   useEffect(() => {
     const progressTimer = setInterval(() => {
       setProgress((prevProgress) => {

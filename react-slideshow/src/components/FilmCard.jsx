@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Progress from 'components/Progress';
 import Checkboxes from 'components/Checkboxes';
 
@@ -27,6 +27,9 @@ const useLocalStorage = (key, initialValue) => {
   return [storedValue, setValue];
 };
 
+// create another parent component to hold onto preferences, then pass them down as props
+// called 'lifting state up' (into a parent)
+
 const FilmCard = ({
   film,
   toggleFavorite,
@@ -46,10 +49,28 @@ const FilmCard = ({
   const [isFilmDur, setIsFilmDur] = useLocalStorage('isFilmDur', true);
   const [isFilmRat, setIsFilmRat] = useLocalStorage('isFilmRat', true);
   const [isFilmUrl, setIsFilmUrl] = useLocalStorage('isFilmUrl', true);
-
+  const [isAllChecked, setIsAllChecked] = useLocalStorage('isAllChecked', true);
   const isFavorite = favorites.some(
     (favoriteFilm) => favoriteFilm.title === film.title
   );
+
+  const handleAllCheckboxChange = () => {
+    setIsAllChecked(!isAllChecked);
+  };
+
+  useEffect(() => {
+    setIsFilmTitle(isAllChecked);
+    setIsFilmBan(isAllChecked);
+    setIsFilmImg(isAllChecked);
+    setIsFilmJa(isAllChecked);
+    setIsFilmDate(isAllChecked);
+    setIsFilmDir(isAllChecked);
+    setIsFilmProd(isAllChecked);
+    setIsFilmDesc(isAllChecked);
+    setIsFilmDur(isAllChecked);
+    setIsFilmRat(isAllChecked);
+    setIsFilmUrl(isAllChecked);
+  }, [isAllChecked]);
 
   return (
     <>
@@ -153,6 +174,8 @@ const FilmCard = ({
           setIsFilmRat={setIsFilmRat}
           isFilmUrl={isFilmUrl}
           setIsFilmUrl={setIsFilmUrl}
+          isAllChecked={isAllChecked}
+          handleAllCheckboxChange={handleAllCheckboxChange}
         />
       </div>
     </>

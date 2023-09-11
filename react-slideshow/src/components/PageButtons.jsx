@@ -35,3 +35,6 @@ const PageButtons = ({
   );
 };
 export default PageButtons;
+
+// write a function that handles the click on page numbers, determines if it's a num or '...'
+// missing intermidiary function
