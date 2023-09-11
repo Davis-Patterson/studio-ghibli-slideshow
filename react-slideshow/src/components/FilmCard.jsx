@@ -2,18 +2,43 @@ import { useState } from 'react';
 import Progress from 'components/Progress';
 import Checkboxes from 'components/Checkboxes';
 
+const useLocalStorage = (key, initialValue) => {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.log(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = (value) => {
+    try {
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return [storedValue, setValue];
+};
+
 const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
-  const [isFilmTitle, setIsFilmTitle] = useState(true);
-  const [isFilmBan, setIsFilmBan] = useState(true);
-  const [isFilmImg, setIsFilmImg] = useState(true);
-  const [isFilmJa, setIsFilmJa] = useState(true);
-  const [isFilmDate, setIsFilmDate] = useState(true);
-  const [isFilmDir, setIsFilmDir] = useState(true);
-  const [isFilmProd, setIsFilmProd] = useState(true);
-  const [isFilmDesc, setIsFilmDesc] = useState(true);
-  const [isFilmDur, setIsFilmDur] = useState(true);
-  const [isFilmRat, setIsFilmRat] = useState(true);
-  const [isFilmUrl, setIsFilmUrl] = useState(true);
+  const [isFilmTitle, setIsFilmTitle] = useLocalStorage('isFilmTitle', true);
+  const [isFilmBan, setIsFilmBan] = useLocalStorage('isFilmBan', true);
+  const [isFilmImg, setIsFilmImg] = useLocalStorage('isFilmImg', true);
+  const [isFilmJa, setIsFilmJa] = useLocalStorage('isFilmJa', true);
+  const [isFilmDate, setIsFilmDate] = useLocalStorage('isFilmDate', true);
+  const [isFilmDir, setIsFilmDir] = useLocalStorage('isFilmDir', true);
+  const [isFilmProd, setIsFilmProd] = useLocalStorage('isFilmProd', true);
+  const [isFilmDesc, setIsFilmDesc] = useLocalStorage('isFilmDesc', true);
+  const [isFilmDur, setIsFilmDur] = useLocalStorage('isFilmDur', true);
+  const [isFilmRat, setIsFilmRat] = useLocalStorage('isFilmRat', true);
+  const [isFilmUrl, setIsFilmUrl] = useLocalStorage('isFilmUrl', true);
 
   const isFavorite = favorites.some(
     (favoriteFilm) => favoriteFilm.title === film.title
@@ -94,34 +119,34 @@ const FilmCard = ({ film, toggleFavorite, favorites, progress }) => {
                   </a>
                 </div>
               ) : null}
-              <Progress progress={progress} />
             </div>
+            <Progress progress={progress} />
           </div>
-          <Checkboxes
-            isFilmTitle={isFilmTitle}
-            setIsFilmTitle={setIsFilmTitle}
-            isFilmBan={isFilmBan}
-            setIsFilmBan={setIsFilmBan}
-            isFilmImg={isFilmImg}
-            setIsFilmImg={setIsFilmImg}
-            isFilmJa={isFilmJa}
-            setIsFilmJa={setIsFilmJa}
-            isFilmDate={isFilmDate}
-            setIsFilmDate={setIsFilmDate}
-            isFilmDir={isFilmDir}
-            setIsFilmDir={setIsFilmDir}
-            isFilmProd={isFilmProd}
-            setIsFilmProd={setIsFilmProd}
-            isFilmDesc={isFilmDesc}
-            setIsFilmDesc={setIsFilmDesc}
-            isFilmDur={isFilmDur}
-            setIsFilmDur={setIsFilmDur}
-            isFilmRat={isFilmRat}
-            setIsFilmRat={setIsFilmRat}
-            isFilmUrl={isFilmUrl}
-            setIsFilmUrl={setIsFilmUrl}
-          />
         </div>
+        <Checkboxes
+          isFilmTitle={isFilmTitle}
+          setIsFilmTitle={setIsFilmTitle}
+          isFilmBan={isFilmBan}
+          setIsFilmBan={setIsFilmBan}
+          isFilmImg={isFilmImg}
+          setIsFilmImg={setIsFilmImg}
+          isFilmJa={isFilmJa}
+          setIsFilmJa={setIsFilmJa}
+          isFilmDate={isFilmDate}
+          setIsFilmDate={setIsFilmDate}
+          isFilmDir={isFilmDir}
+          setIsFilmDir={setIsFilmDir}
+          isFilmProd={isFilmProd}
+          setIsFilmProd={setIsFilmProd}
+          isFilmDesc={isFilmDesc}
+          setIsFilmDesc={setIsFilmDesc}
+          isFilmDur={isFilmDur}
+          setIsFilmDur={setIsFilmDur}
+          isFilmRat={isFilmRat}
+          setIsFilmRat={setIsFilmRat}
+          isFilmUrl={isFilmUrl}
+          setIsFilmUrl={setIsFilmUrl}
+        />
       </div>
     </>
   );
