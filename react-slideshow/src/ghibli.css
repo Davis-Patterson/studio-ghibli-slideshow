@@ -89,7 +89,7 @@
 }
 
 .ghibliKaonashi:active {
-  content: url('assets/ghibli-Kaonashi4.png')
+  content: url('assets/ghibli-kaonashi4.png')
 }
 
 @keyframes kaonashiHoverEffect {
