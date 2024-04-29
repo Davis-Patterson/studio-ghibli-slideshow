@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "framer-motion": "^10.16.4",
+    "react-animated-progress-bar": "^1.1.2"
+  }
+}
